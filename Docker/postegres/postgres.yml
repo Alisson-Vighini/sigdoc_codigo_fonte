@@ -1,0 +1,9 @@
+version: '2'
+services:
+  postegres:
+    image: postgres:11.5
+    environment:
+      - POSTGRES_USER=sigdoc
+      - POSTGRES_PASSWORD=sigdoc
+    ports:
+      - 5432:5432
