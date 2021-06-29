@@ -1,0 +1,7 @@
+version: '2'
+services:
+  postegres:
+    extends:
+      file: ./postegres/postgres.yml
+      service: postegres
+    container_name: sigdoc-postgres

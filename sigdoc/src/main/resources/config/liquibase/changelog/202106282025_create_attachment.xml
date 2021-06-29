@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="202106282025-01" author="alisson.vighini">
+        <createTable tableName="attachment" remarks="This table holds the information of the attachment.">
+            <column name="id" type="int" autoIncrement="true" remarks="identification field">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(50)" remarks="Title of the attachment">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hash" type="varchar(250)" remarks="Hash of the attachment">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="varchar(50)" remarks="Size of the attachment">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(50)" remarks="Type of the attachment">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_id" type="int" remarks="Task identifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202106282025-02" author="alisson.vighini">
+        <addForeignKeyConstraint baseTableName="attachment"
+                                 baseColumnNames="task_id"
+                                 constraintName="fk_attachment_task"
+                                 referencedTableName="task"
+                                 referencedColumnNames="id"
+        />
+    </changeSet>
+
+</databaseChangeLog>

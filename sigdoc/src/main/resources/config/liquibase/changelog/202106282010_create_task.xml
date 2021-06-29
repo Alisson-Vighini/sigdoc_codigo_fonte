@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="202106282010-01" author="alisson.vighini">
+        <createTable tableName="task" remarks="This table holds the information of the task.">
+            <column name="id" type="int" autoIncrement="true" remarks="identification field">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(50)" remarks="Title of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(250)" remarks="Description of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="initial_date" type="date" remarks="Initial date of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="final_date" type="date" remarks="Final date of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expected_initial_date" type="date" remarks="Expected initial date of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expected_final_date" type="date" remarks="Expected final date of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(50)" remarks="Type of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(50)" remarks="Status of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comments" type="varchar(50)" remarks="Comments of the task">
+                <constraints nullable="false"/>
+            </column>
+            <column name="responsible_id" type="int" remarks="Responsible for a task">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202106282010-02" author="alisson.vighini">
+        <addForeignKeyConstraint baseTableName="task"
+                                 baseColumnNames="responsible_id"
+                                 constraintName="fk_task_responsible"
+                                 referencedTableName="responsible"
+                                 referencedColumnNames="id"
+        />
+    </changeSet>
+
+</databaseChangeLog>
